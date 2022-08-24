@@ -1,0 +1,51 @@
+<div data-controller='users-by-email-auth'>
+<div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+             <div style='cursor: pointer' class='flex-none' data-modal-target='closeButton'>
+              <p>X</p>
+              <h3 class="text-lg leading-6 text-center font-medium text-gray-900" id="modal-title">Log in or Sign up</h3>
+              </div>
+              <div class='relative my-5'>
+                <div class='absolute inset-0 flex items-center' aria-hidden='true'>
+                  <div class='w-full border-t border-gray-300'></div>
+                </div>
+                <%# <div class='relative flex justify-center'>
+                  <span class='px-2 bg-white text-sm text-gray-500'></span>
+                </div> %>
+              </div>
+              <div class="mt-2">
+                <h4 class='text-lg leading-6 text-gray-900'>Welcome to AirBnB</h4>
+                <div
+                  class='border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600'>
+                  <label for='email' class='block text-xs font-medium text-gray-900'>Email</label>
+                  <input type='email' name='email' id='email' data-users-by-email-auth-target='email'
+                    class='block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm' />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="my-5 sm:my-6">
+          <button type="button" data-users-by-email-auth-target="submit"
+            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+            Continue
+          </button>
+        </div>
+        <div class='relative my-5'>
+          <div class='absolute inset-0 flex items-center' aria-hidden='true'>
+            <div class='w-full border-t border-gray-300'></div>
+          </div>
+          <div class='relative flex justify-center'>
+            <span class='px-2 bg-white text-sm text-gray-500'>OR</span>
+          </div>
+        
+      </div>
+
+      <div class="my-5 sm:my-6">
+        <button type="button"
+          class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">continue with Facebook</button>
+      </div>
+</div>
+      
