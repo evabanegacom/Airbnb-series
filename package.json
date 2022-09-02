@@ -9,6 +9,7 @@
     "@rails/webpacker": "4.3.0",
     "axios": "^0.27.2",
     "el-transition": "^0.0.7",
+    "geolib": "^3.3.3",
     "stimulus": "^3.0.1",
     "turbolinks": "^5.2.0"
   },
