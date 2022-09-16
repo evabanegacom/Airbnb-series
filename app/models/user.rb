@@ -9,6 +9,6 @@ class User < ApplicationRecord
 
   def create_profile
     self.profile = Profile.new
-    save
+    save!
   end
 end

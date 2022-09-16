@@ -1,9 +1,11 @@
 import { Controller } from 'stimulus';
 import { getDistance, convertDistance } from 'geolib';
+import { isEmpty } from 'lodash-es';
 
 export default class extends Controller {
     static targets = ['property']
     connect() {
+        if(isEmpty(this.element.dataset.latitude) && isEmpty(this.element.dataset.longitude)){
         //console.log(this.element)
         //console.log(this.propertyTargets)
         window.navigator.geolocation.getCurrentPosition((pos) => {
@@ -32,7 +34,19 @@ export default class extends Controller {
             //console.log({distanceFrom})
                property.querySelector('[data-distance-away]').innerHTML = `${Math.round(convertDistance(distanceFrom, 'km'))} Km away` 
             })
-
+        })
+    }else{
+        const coordinatesDataset = {latitude: this.element.dataset.latitude, longitude: this.element.dataset.longitude}
+        const coordinatesProperty = { latitude: property.dataset.latitude,longitude: property.dataset.longitude }
+        this.setDistanceText(coordinatesDataset, coordinatesProperty)
+    }
+    }
+    setDistanceText(coordinatesDataset, coordinatesProperty){
+        this.propertyTargets.forEach((property) => {
+            console.log(property.querySelector('[data-distance-away]'))
+           let distanceFrom = getDistance(
+            coordinatesProperty, coordinatesDataset)
+           property.querySelector('[data-distance-away]').innerHTML = `${Math.round(convertDistance(distanceFrom, 'km'))} Km away` 
         })
     }
 }

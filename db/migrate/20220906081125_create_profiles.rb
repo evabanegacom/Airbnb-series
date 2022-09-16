@@ -9,6 +9,7 @@ class CreateProfiles < ActiveRecord::Migration[6.0]
       t.string :country
       t.float :longitude
       t.float :latitude
+      t.string :zipcode
 
       t.timestamps
     end

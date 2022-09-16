@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2022_09_06_081125) do
     t.string "country"
     t.float "longitude"
     t.float "latitude"
+    t.string "zipcode"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 2022_09_06_081125) do
     t.datetime "updated_at", precision: 6, null: false
     t.float "longitude"
     t.float "latitude"
+    t.string "zipcode"
     t.index ["latitude", "longitude"], name: "index_properties_on_latitude_and_longitude"
   end
 
