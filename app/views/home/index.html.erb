@@ -11,10 +11,7 @@ data-longitude='<%= current_user&.profile&.longitude %>'
     data-longitude='<%=property.longitude %>'
   >
     <div class='group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring'>
-      <img style='border-radius: 10px; width:300px;' src="https://mdbootstrap.com/img/new/standard/city/041.jpg"
-        class="p-1 bg-white border"
-        alt="images"
-     />
+     <%= image_tag property.default_image, class: 'object-cover pointer-events-none group-hover:opacity-75' %>
      <button type='button' class='absolute inset-0 focus:outline-none'>
        <span class='sr-only'>View details for IMG_4985.1O</span>
      </button>
@@ -22,7 +19,7 @@ data-longitude='<%= current_user&.profile&.longitude %>'
   <p class='mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none'><%=property.city %>, <%=property.state %></p>
   <p data-distance-away class='block text-sm font-medium text-gray-500 pointer-events-none'>7,944 KM Away</p>
   <p class='block text-sm font-medium text-gray-500 pointer-events-none'>JUn 19 - 24</p>
-  <p class='block text-sm font-medium text-gray-500 pointer-events-none'>$172 per night</p>
+  <p class='block text-sm font-medium text-gray-500 pointer-events-none'><%= humanized_money_with_symbol(property&.price)%> per night</p>
   </li>
 <% end %>
 </ul>
