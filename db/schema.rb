@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_19_145939) do
+ActiveRecord::Schema.define(version: 2022_10_09_100841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,7 +67,20 @@ ActiveRecord::Schema.define(version: 2022_09_19_145939) do
     t.string "zipcode"
     t.integer "price_cents"
     t.string "price_currency"
+    t.integer "reviews_count"
+    t.decimal "average_rating"
     t.index ["latitude", "longitude"], name: "index_properties_on_latitude_and_longitude"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.integer "rating"
+    t.bigint "reviewable_id"
+    t.string "reviewable_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable_type_and_reviewable_id"
   end
 
   create_table "users", force: :cascade do |t|
