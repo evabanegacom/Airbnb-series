@@ -49,4 +49,8 @@ export default class extends Controller {
            property.querySelector('[data-distance-away]').innerHTML = `${Math.round(convertDistance(distanceFrom, 'km'))} Km away` 
         })
     }
+
+    favourite() {
+        console.log('favourite button clicked')
+    }
 }
