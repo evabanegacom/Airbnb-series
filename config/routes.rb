@@ -5,6 +5,6 @@ Rails.application.routes.draw do
     # resources :users, only: :show
     get '/users_by_email' => 'users_by_emails#show', as: :users_by_email
 
-    resources :favorites, only: :create
+    resources :favorites, only: %i[create destroy]
   end
 end

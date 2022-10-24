@@ -9,6 +9,7 @@ RSpec.describe 'Api::Favorites', type: :request do
   let(:property) { create(:property) }
 
   before { sign_in user }
+
   describe 'POST create' do
     let(:params) do
       {
@@ -19,11 +20,19 @@ RSpec.describe 'Api::Favorites', type: :request do
 
     it 'creates new favorite' do
       expect do
-      end
-      expect do
         post api_favorites_path, params: params, headers: headers
       end.to change(Favorite, :count).by(1)
       expect(response.status).to eq 201
+    end
+  end
+
+  describe 'DELETE destroy' do
+    it 'deletes a favorite' do
+      favorite = create(:favorite)
+      expect do
+        delete api_favorite_path(favorite), headers: headers
+      end.to change(Favorite, :count).by(-1)
+      expect(response.status).to eq 204
     end
   end
 end
