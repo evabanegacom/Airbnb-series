@@ -4,7 +4,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
+  has_many :favorites, dependent: :destroy
+
+  has_many :favorited_properties, through: :favorites, source: :property
+
   after_create :create_profile
 
   def create_profile

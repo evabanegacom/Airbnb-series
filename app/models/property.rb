@@ -1,24 +1,28 @@
 class Property < ApplicationRecord
-    validates :name, presence: true
-    after_validation :geocode, if: ->{ longitude.blank? && latitude.blank? }
+  validates :name, presence: true
+  after_validation :geocode, if: -> { longitude.blank? && latitude.blank? }
 
-    monetize :price_cents, allow_nil: true
-    
-    has_many :reviews, as: :reviewable
+  monetize :price_cents, allow_nil: true
 
-    has_many_attached :images, dependent: :destroy
-    
-    geocoded_by :address
+  has_many :reviews, as: :reviewable
 
-    # def average_rating
-    #   reviews.average(:rating)
-    # end
-    
-    def address
-      [state, country].compact.join(',')
-    end
+  has_many_attached :images, dependent: :destroy
 
-    def default_image
-      images.first
-    end
+  has_many :favorites, dependent: :destroy
+
+  has_many :favorited_users, through: :favorites, source: :user
+
+  geocoded_by :address
+
+  # def average_rating
+  #   reviews.average(:rating)
+  # end
+
+  def address
+    [state, country].compact.join(',')
+  end
+
+  def default_image
+    images.first
+  end
 end

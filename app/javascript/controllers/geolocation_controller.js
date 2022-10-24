@@ -20,7 +20,9 @@ export default class extends Controller {
                 { latitude: 41.6500201, longitude: -72.7342163}
             );
 
-            ///console.log({distance})
+            console.log({distance})
+            console.log(property.querySelector('[data-distance-away]'))
+
 
             const convert = convertDistance(distance, 'km')
             //console.log({convert})

@@ -16,7 +16,7 @@ RSpec.describe 'Api::UsersByEmails', type: :request do
 
     context 'user does not exist' do
       it 'is not found' do
-        get api_users_by_email_path, params: { email: 'junk@example.com'}, headers: headers
+        get api_users_by_email_path, params: { email: 'junk@example.com' }, headers: headers
         expect(response.status).to eq 404
       end
     end
