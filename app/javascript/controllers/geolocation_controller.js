@@ -21,8 +21,6 @@ export default class extends Controller {
             );
 
             console.log({distance})
-            console.log(property.querySelector('[data-distance-away]'))
-
 
             const convert = convertDistance(distance, 'km')
             //console.log({convert})
