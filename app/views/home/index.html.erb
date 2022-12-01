@@ -17,15 +17,13 @@ data-longitude='<%= current_user&.profile&.longitude %>'
      </button>
      <div class='flex flex-row-reverse p2'>
      <svg xmlns="http://www.w3.org/2000/svg" 
-     fill="<%= current_user&.favorited_properties.include?(property) ? 'red' : '#ced4da'%>" 
+     fill="<%=  property.favorited_by?(current_user) ? 'red' : '#ced4da'%>" 
      stroke="currentColor" class="w-6 h-6 cursor-pointer"
      data-user-logged-in="<%= user_signed_in? %>"
-     data-favorited="<%= current_user&.favorites.where(property: property).exists?%>"
+     data-favorited="<%= property.favorited_by?(current_user)%>"
      data-user-id="<%= current_user&.id%>"
      data-property-id="<%= property&.id %>"
-     data-favorite-url="<%= api_favorites_path%>"
-     data-favorite-id="<%= current_user.favorites.find_by(property: property).id if current_user&.favorited_properties.include?(property)%>"
-     data-unfavorite-url="<%= api_favorite_path(current_user.favorites.find_by(property: property)) if current_user&.favorited_properties.include?(property)%>"
+     data-favorite-id="<%= property.favorites.find_by(user: current_user)&.id%>"
      data-controller='favorites'
      data-action='click->favorites#favourite'
      >

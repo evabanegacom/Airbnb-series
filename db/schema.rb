@@ -10,102 +10,103 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_221_022_101_647) do
+ActiveRecord::Schema.define(version: 2022_12_01_153852) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'active_storage_attachments', force: :cascade do |t|
-    t.string 'name', null: false
-    t.string 'record_type', null: false
-    t.bigint 'record_id', null: false
-    t.bigint 'blob_id', null: false
-    t.datetime 'created_at', null: false
-    t.index ['blob_id'], name: 'index_active_storage_attachments_on_blob_id'
-    t.index %w[record_type record_id name blob_id], name: 'index_active_storage_attachments_uniqueness',
-                                                    unique: true
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table 'active_storage_blobs', force: :cascade do |t|
-    t.string 'key', null: false
-    t.string 'filename', null: false
-    t.string 'content_type'
-    t.text 'metadata'
-    t.bigint 'byte_size', null: false
-    t.string 'checksum', null: false
-    t.datetime 'created_at', null: false
-    t.index ['key'], name: 'index_active_storage_blobs_on_key', unique: true
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table 'favorites', force: :cascade do |t|
-    t.bigint 'user_id', null: false
-    t.bigint 'property_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['property_id'], name: 'index_favorites_on_property_id'
-    t.index ['user_id'], name: 'index_favorites_on_user_id'
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "property_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["property_id", "user_id"], name: "index_favorites_on_property_id_and_user_id", unique: true
+    t.index ["property_id"], name: "index_favorites_on_property_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
-  create_table 'profiles', force: :cascade do |t|
-    t.bigint 'user_id', null: false
-    t.string 'address_1'
-    t.string 'address_2'
-    t.string 'city'
-    t.string 'state'
-    t.string 'country'
-    t.float 'longitude'
-    t.float 'latitude'
-    t.string 'zipcode'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['user_id'], name: 'index_profiles_on_user_id'
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "address_1"
+    t.string "address_2"
+    t.string "city"
+    t.string "state"
+    t.string "country"
+    t.float "longitude"
+    t.float "latitude"
+    t.string "zipcode"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
-  create_table 'properties', force: :cascade do |t|
-    t.string 'name'
-    t.text 'description'
-    t.string 'city'
-    t.string 'state'
-    t.string 'country'
-    t.string 'headline'
-    t.string 'address_1'
-    t.string 'address_2'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.float 'longitude'
-    t.float 'latitude'
-    t.string 'zipcode'
-    t.integer 'price_cents'
-    t.string 'price_currency'
-    t.integer 'reviews_count'
-    t.decimal 'average_rating'
-    t.index %w[latitude longitude], name: 'index_properties_on_latitude_and_longitude'
+  create_table "properties", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "city"
+    t.string "state"
+    t.string "country"
+    t.string "headline"
+    t.string "address_1"
+    t.string "address_2"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.float "longitude"
+    t.float "latitude"
+    t.string "zipcode"
+    t.integer "price_cents"
+    t.string "price_currency"
+    t.integer "reviews_count"
+    t.decimal "average_rating"
+    t.index ["latitude", "longitude"], name: "index_properties_on_latitude_and_longitude"
   end
 
-  create_table 'reviews', force: :cascade do |t|
-    t.string 'title'
-    t.text 'body'
-    t.integer 'rating'
-    t.bigint 'reviewable_id'
-    t.string 'reviewable_type'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index %w[reviewable_type reviewable_id], name: 'index_reviews_on_reviewable_type_and_reviewable_id'
+  create_table "reviews", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.integer "rating"
+    t.bigint "reviewable_id"
+    t.string "reviewable_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable_type_and_reviewable_id"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email', default: '', null: false
-    t.string 'encrypted_password', default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['email'], name: 'index_users_on_email', unique: true
-    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'
-  add_foreign_key 'favorites', 'properties'
-  add_foreign_key 'favorites', 'users'
-  add_foreign_key 'profiles', 'users'
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "favorites", "properties"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "profiles", "users"
 end

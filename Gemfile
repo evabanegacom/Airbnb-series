@@ -22,6 +22,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'money-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
+gem 'jsonapi-serializer'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # Use Active Storage variant
