@@ -14,6 +14,9 @@ class Property < ApplicationRecord
 
   geocoded_by :address
 
+  has_many :reservations, dependent: :destroy
+  has_many :reserved_users, through: :reservations, source: :user
+
   # def average_rating
   #   reviews.average(:rating)
   # end
@@ -28,6 +31,7 @@ class Property < ApplicationRecord
 
   def favorited_by?(user)
     return if user.nil?
+
     favorited_users.include?(user)
   end
 end
