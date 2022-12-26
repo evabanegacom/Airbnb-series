@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
     resources :favorites, only: %i[create destroy]
   end
+  resources :properties, only: %i[show]
 end
